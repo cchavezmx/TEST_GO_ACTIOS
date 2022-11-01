@@ -12,7 +12,10 @@ jobs:
       - name: Github configuraion
         run: |
           go version
-          export GIT_TOKEN=${{ secrets.GIT_TOKEN }}          
-          echo "machine github.com login cchavezmx99 password $GIT_TOKEN" > ~/.netrc
+          export GIT_USER="cchavezmx99"
+          export GIT_TOKEN=${{ secrets.GIT_TOKEN }}
+          git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
+          echo machine github.com login cchavezmx99 password ${{ secrets.GIT_TOKEN }} >> ~/.netrc
+          go install github.com/99minutos/agave-cli@latest
       - name: Install agave-cli
-        run: go install github.com/99minutos/agave-cli@latest
+        run: cat $HOME/.profile | grep 'cchavezmx' -n
