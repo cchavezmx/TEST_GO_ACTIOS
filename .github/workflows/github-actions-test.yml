@@ -13,5 +13,6 @@ jobs:
         run: |
           go version
           export GIT_TOKEN=${{ secrets.GIT_TOKEN }}
-          echo machine github.com login cchavezmx99 password $GIT_TOKEN >> ~/.netrc
+          echo machine github.com login cchavezmx99 password ${{ secrets.GIT_TOKEN }} >> ~/.netrc
           go install github.com/99minutos/agave-cli@latest
+      
