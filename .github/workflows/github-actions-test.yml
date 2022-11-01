@@ -13,10 +13,9 @@ jobs:
         run: |
           go version
           export GIT_TOKEN=${{ secrets.GIT_TOKEN }}
+          export GOPRIVATE="github.com/99minutos"
           git config --global user.name "cchavezmx99"
           git config --global user.email "carlos.chavez@99minutos.com"
           git config --global url."https://${GIT_TOKEN}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
-      - name: test github
-        run: git config --global --list        
       - name: Install agave-cli
         run: go install github.com/99minutos/agave-cli@latest
