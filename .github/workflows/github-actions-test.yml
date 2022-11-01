@@ -1,0 +1,20 @@
+name: GitHub actions con integracion de agave-cli
+run-name: GitHub actions con integracion de agave-cli
+on: [push]
+jobs:
+    go: 
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Setup Go
+          uses: actions/setup-go@v2
+          with:
+            go-version: 1.16
+        - name: Install agave-cli
+        - run: go install github.com/99minutos/agave-cli@latest
+        - name: Run tests
+          run: go test -v ./...
+        - name: Run agave-cli
+          run: agave-cli new orders --env dev --api-key e036c372285d12c7e15992a2c38b0fbb419a5b70
+
