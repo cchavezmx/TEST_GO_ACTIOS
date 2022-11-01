@@ -11,6 +11,8 @@ jobs:
           go-version: '1.16.1' # The Go version to download (if necessary) and use.
       - name: Github configuraion
         run: |
-          git config --global url."https://${{ secrets.GIT_TOKEN }}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
+          go version
+          export GIT_TOKEN=${{ secrets.GIT_TOKEN }}
           echo machine github.com login cchavezmx99 password ${{ secrets.GIT_TOKEN }} >> ~/.netrc
+          git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
           go install github.com/99minutos/agave-cli@latest
