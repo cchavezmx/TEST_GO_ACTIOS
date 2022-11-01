@@ -18,6 +18,7 @@ jobs:
           git config --global user.name "cchavezmx99"
           git config --global user.email "carlos.chavez@99minutos.com"
           git config --global url."https://${GIT_TOKEN}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
+      - name: Agave-cli
         with:
           repository: 99minutos/agave-cli
           ref: v2.2.0
