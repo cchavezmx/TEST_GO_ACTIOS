@@ -9,13 +9,12 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version: '1.16.1' # The Go version to download (if necessary) and use.
+      - name: Install agave-cli
+        run: |
+          export GIT_USER="cchavezmx99"
+          cat $HOME/.profile | grep 'cchavezmx' -n
       - name: Github configuraion
         run: |
-          go version
-          export GIT_USER="cchavezmx99"
-          export GIT_TOKEN=${{ secrets.GIT_TOKEN }}
-          git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
+          git config --global url."https://${{ secrets.GIT_TOKEN }}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
           echo machine github.com login cchavezmx99 password ${{ secrets.GIT_TOKEN }} >> ~/.netrc
           go install github.com/99minutos/agave-cli@latest
-      - name: Install agave-cli
-        run: cat $HOME/.profile | grep 'cchavezmx' -n
