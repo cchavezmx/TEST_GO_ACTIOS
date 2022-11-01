@@ -9,8 +9,6 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version: '1.16.1' # The Go version to download (if necessary) and use.
-      - name: install agave-cli
-        uses: actions/checkout@v2
       - name: Github configuraion
         run: |
           go version
@@ -18,11 +16,13 @@ jobs:
           git config --global user.name "cchavezmx99"
           git config --global user.email "carlos.chavez@99minutos.com"
           git config --global url."https://${GIT_TOKEN}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
-      - name: Agave-cli
+      - name: install agave-cli
+        uses: actions/checkout@v2
         with:
           repository: 99minutos/agave-cli
           ref: v2.2.0
           path: agave-cli
+          token: ${{ secrets.GITHUB_TOKEN }}
           run: |
             cd agave-cli
             go install
