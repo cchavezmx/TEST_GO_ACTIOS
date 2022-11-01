@@ -12,6 +12,10 @@ jobs:
       - name: Github configuraion
         run: |
           export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          git config --global user.name "cchavezmx99"
+          git config --global user.email "carlos.chavez@99minutos.com"
           git config --global url."https://${GIT_TOKEN}:x-oauth-basic@github.com/99minutos".insteadOf "https://github.com/99minutos"
+      - name: test github
+        run: git config --global --list        
       - name: Install agave-cli
         run: go install github.com/99minutos/agave-cli@latest
